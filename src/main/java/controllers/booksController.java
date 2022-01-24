@@ -23,10 +23,10 @@ public class booksController {
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") long id) {
 
-        Optional<Book> city = bookService.getById(id);
+        Optional<Book> book = bookService.getById(id);
 
-        if (city.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(city.get());
+        if (book.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(book.get());
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
