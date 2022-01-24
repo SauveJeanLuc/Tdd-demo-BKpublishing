@@ -1,7 +1,5 @@
 package models;
 
-import org.apache.tomcat.jni.Local;
-
 import java.time.LocalDateTime;
 
 public class Book {
