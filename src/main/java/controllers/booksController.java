@@ -30,7 +30,7 @@ public class booksController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new APICustomResponse(false, "City not found with id " + id));
+                .body(new APICustomResponse(false, "Book not found with id " + id));
     }
 
     @GetMapping("/all")
@@ -44,9 +44,9 @@ public class booksController {
 
         if (bookService.existsByTitle(dto.getTitle())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APICustomResponse(false, "City name " + dto.getTitle() + " is registered already"));
+                    .body(new APICustomResponse(false, "book title  " + dto.getTitle() + " is registered already"));
         }
-        Book city = bookService.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(city);
+        Book book = bookService.save(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 }
