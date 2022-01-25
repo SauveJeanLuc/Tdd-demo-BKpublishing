@@ -16,6 +16,11 @@ public class Author {
         this.dob = dob;
     }
 
+    public Author(Long id, String fullNames) {
+        this.id = id;
+        this.fullNames = fullNames;
+    }
+
     public Long getId() {
         return id;
     }

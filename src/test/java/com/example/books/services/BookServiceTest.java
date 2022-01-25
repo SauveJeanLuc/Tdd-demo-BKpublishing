@@ -1,30 +1,25 @@
 package com.example.books.services;
 
 import com.example.books.dto.BookDto;
+import com.example.books.models.Book;
 import com.example.books.repository.IBookRepository;
-import com.example.books.utils.CustomException;
-import models.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import services.BookService;
 
 import java.util.Arrays;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class bookService {
+public class BookServiceTest {
     @Mock
     IBookRepository bookRepository;
 
@@ -32,7 +27,7 @@ public class bookService {
     BookService bookService;
 
     @Test
-    public void returnCities() {
+    public void returnBooks() {
         when(bookRepository.findAll()).thenReturn(Arrays.asList(
                 new Book(1l, "Breaking the silence", 89l),
                 new Book(2l, "The giver", 23l),
@@ -42,8 +37,8 @@ public class bookService {
 
     @Test
     public void createBook() {
-        when(bookRepository.save(ArgumentMatchers.any(Book.class))).thenReturn(new Book(3l, "Huye City", 23l));
-        assertEquals("Huye City",bookService.save( new BookDto()).getTitle());
+        when(bookRepository.save(ArgumentMatchers.any(Book.class))).thenReturn(new Book(3l, "Holy Bible", 23l));
+        assertEquals("Breaking The Silence",bookService.save( new BookDto()).getTitle());
     }
 
 //    @Test
@@ -59,9 +54,9 @@ public class bookService {
 
     @Test
     public void getBook_ByID(){
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Huye City", 2l)));
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", 2l)));
 
-        assertEquals("Huye City", bookService.getById(120).get().getTitle());
+        assertEquals("Go Girl", bookService.getById(120).get().getTitle());
     }
 
     @Test
@@ -73,13 +68,13 @@ public class bookService {
     @Test
     public void existsByName_test() {
         when(bookRepository.existsByTitle(anyString())).thenReturn(true);
-        assertEquals(true, bookService.existsByTitle("Musanze"));
+        assertEquals(true, bookService.existsByTitle("Things Fall Apart"));
     }
 
     @Test
     public void existsByName_NotFound() {
         when(bookRepository.existsByTitle(anyString())).thenReturn(false);
-        assertEquals(false, bookService.existsByTitle("kgli"));
+        assertEquals(false, bookService.existsByTitle("Miracle Worker"));
     }
 
 

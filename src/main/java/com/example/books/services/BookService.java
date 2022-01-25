@@ -12,35 +12,31 @@ import java.util.Optional;
 
 @Service
 public class BookService {
-
     @Autowired
-private IBookRepository bookRepo;
+    private IBookRepository bookRepository;
+
+    public Optional<Book> getById(long id) {
+
+        Optional<Book> book =  bookRepository.findById(id);
+
+        return book;
+    }
 
     public List<Book> getAll() {
 
-        List<Book> items = bookRepo.findAll();
-
-        return items;
-    }
-
-
-    public Optional<Book> getById(long id) {
-        return bookRepo.findById(id);
+        return bookRepository.findAll();
     }
 
     public boolean existsByTitle(String title) {
-        boolean bookExist=bookRepo.existsByTitle(title);
 
-        return bookExist;
+        return bookRepository.existsByTitle(title);
     }
+
 
     public Book save(BookDto dto) {
-Book book1 = new Book();
-
-        book1.setAuthor(dto.getAuthorId());
-        book1.setTitle(dto.getTitle());
-        bookRepo.save(book1);
-//        book1.setId();
-        return null;
+        Book book =  new Book();
+        book.setTitle(dto.getTitle());
+        return bookRepository.save(book);
     }
+
 }
