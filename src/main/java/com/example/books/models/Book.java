@@ -1,9 +1,9 @@
-package models;
+package com.example.books.models;
 
-import java.time.LocalDateTime;
+import org.springframework.data.annotation.Id;
 
 public class Book {
-
+@Id
     private Long id;
     private String title;
     private Author author;

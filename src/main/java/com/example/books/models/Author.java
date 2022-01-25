@@ -1,4 +1,4 @@
-package models;
+package com.example.books.models;
 
 import java.time.LocalDateTime;
 

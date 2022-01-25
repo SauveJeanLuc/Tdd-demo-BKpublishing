@@ -1,14 +1,14 @@
-package controllers;
+package com.example.books.controllers;
 
 
 import com.example.books.dto.BookDto;
 import com.example.books.utils.APICustomResponse;
-import models.Book;
+import com.example.books.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.BookService;
+import com.example.books.services.BookService;
 
 import java.util.List;
 import java.util.Optional;

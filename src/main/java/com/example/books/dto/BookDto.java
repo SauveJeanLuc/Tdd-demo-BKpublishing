@@ -1,6 +1,6 @@
 package com.example.books.dto;
 
-import models.Author;
+import com.example.books.models.Author;
 
 import java.time.LocalDateTime;
 
@@ -34,7 +34,7 @@ public class BookDto {
         this.publishedAt = publishedAt;
     }
 
-    public Long getAuthorId() {
+    public Author getAuthorId() {
         return authorId;
     }
 
