@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BooksController.class)
-public class booksController {
+public class BookControllerTests {
     @MockBean
     private BookService bookServiceMock;
 
@@ -90,8 +90,8 @@ public class booksController {
     }
 
     @Test
-    public void createCityTest() throws Exception{
-        Book book = new Book(2,"High School Girlz");
+    public void createBookTest() throws Exception{
+        Book book = new Book(2L,"High School Girlz");
         when(bookServiceMock.save(new BookDto())).thenReturn(book);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
@@ -107,7 +107,7 @@ public class booksController {
     }
 
     @Test
-    public void create_test_duplicateCity() throws Exception {
+    public void create_test_duplicateBook() throws Exception {
         when(bookServiceMock.save(any(BookDto.class))).thenThrow(new CustomException("Book Title already registered", HttpStatus.BAD_REQUEST));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/books")

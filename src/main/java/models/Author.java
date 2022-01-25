@@ -5,15 +5,13 @@ import java.time.LocalDateTime;
 public class Author {
     private Long id;
     private String fullNames;
-    private LocalDateTime dob;
 
     public Author() {
     }
 
-    public Author(Long id, String fullNames, LocalDateTime dob) {
+    public Author(Long id, String fullNames) {
         this.id = id;
         this.fullNames = fullNames;
-        this.dob = dob;
     }
 
     public Long getId() {
@@ -32,11 +30,4 @@ public class Author {
         this.fullNames = fullNames;
     }
 
-    public LocalDateTime getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDateTime dob) {
-        this.dob = dob;
-    }
 }
