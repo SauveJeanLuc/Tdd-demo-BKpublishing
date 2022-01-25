@@ -1,6 +1,7 @@
 package com.example.books.controllers;
 
 import controllers.BooksController;
+import models.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import services.BookService;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,13 +37,13 @@ public class booksController {
 
     @Test
     public void getAllCities_Success() throws Exception {
-        List<City> asList = Arrays.asList(new City(1,"Kigali City",23,23.90),
-                new City(2,"Kigali City",23,23.90));
+        List<Book> asList = Arrays.asList(new Book(1,"Things Fall Apart", LocalDateTime.now()),
+                new Book(2,"The Giver",LocalDateTime.now()));
 
         when(bookServiceMock.getAll()).thenReturn(asList);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get("/api/cities/all")
+                .get("/api/books/all")
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc
