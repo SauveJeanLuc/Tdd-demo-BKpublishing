@@ -47,7 +47,7 @@ public class BooksController {
                     .body(new APICustomResponse(false, "Book title " + dto.getTitle() + " is registered already"));
         }
         Book book = bookService.save(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(city);
+        return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
 
 
