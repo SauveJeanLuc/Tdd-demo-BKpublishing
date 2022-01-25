@@ -38,13 +38,6 @@ public class Book {
         this.title = title;
     }
 
-    public LocalDateTime getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(LocalDateTime publishedAt) {
-        this.publishedAt = publishedAt;
-    }
 
     public Author getAuthor() {
         return author;
