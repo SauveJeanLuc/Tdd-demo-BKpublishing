@@ -1,24 +1,21 @@
-package com.example.books.models;
+package com.example.books.dto;
 
 import java.time.LocalDateTime;
 
-public class Author {
-    private Long id;
+public class AuthorDto {
+
+
     private String fullNames;
     private LocalDateTime dob;
+    private Long id;
 
-    public Author() {
+    public AuthorDto() {
     }
 
-    public Author(Long id, String fullNames, LocalDateTime dob) {
+    public AuthorDto(Long id, String fullNames, LocalDateTime dob) {
         this.id = id;
         this.fullNames = fullNames;
         this.dob = dob;
-    }
-
-    public Author(Long id, String fullNames) {
-        this.id = id;
-        this.fullNames = fullNames;
     }
 
     public Long getId() {

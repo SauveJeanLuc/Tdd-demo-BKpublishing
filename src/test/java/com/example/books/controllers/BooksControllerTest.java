@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BooksController.class)
-public class booksController {
+public class BooksControllerTest {
     @MockBean
     private BookService bookServiceMock;
 
@@ -89,8 +89,8 @@ public class booksController {
     }
 
     @Test
-    public void createCityTest() throws Exception{
-        Book book = new Book(2,"High School Girlz");
+    public void createBookTest() throws Exception{
+        Book book = new Book(2L,"High School Girlz");
         when(bookServiceMock.save(new BookDto())).thenReturn(book);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
