@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.bookService;
+import services.BookService;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class booksController {
 
     @Autowired
-    private services.bookService bookService;
+    private BookService bookService;
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") long id) {
@@ -35,7 +36,6 @@ public class booksController {
 
     @GetMapping("/all")
     public List<Book> getAll() {
-
         return bookService.getAll();
     }
 

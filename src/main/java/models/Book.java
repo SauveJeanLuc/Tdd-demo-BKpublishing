@@ -6,16 +6,14 @@ public class Book {
 
     private Long id;
     private String title;
-    private LocalDateTime publishedAt;
-    private Author author;
+    private Long author;
 
     public Book() {
     }
 
-    public Book(Long id, String title, LocalDateTime publishedAt, Author author) {
+    public Book(Long id, String title,  Long author) {
         this.id = id;
         this.title = title;
-        this.publishedAt = publishedAt;
         this.author = author;
     }
 
@@ -35,19 +33,12 @@ public class Book {
         this.title = title;
     }
 
-    public LocalDateTime getPublishedAt() {
-        return publishedAt;
-    }
 
-    public void setPublishedAt(LocalDateTime publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
-    public Author getAuthor() {
+    public Long getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(Long author) {
         this.author = author;
     }
 }
