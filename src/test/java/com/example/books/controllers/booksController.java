@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import services.BookService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -36,9 +37,9 @@ public class booksController {
     private MockMvc mockMvc;
 
     @Test
-    public void getAllCities_Success() throws Exception {
-        List<Book> asList = Arrays.asList(new Book(1,"Things Fall Apart", LocalDateTime.now()),
-                new Book(2,"The Giver",LocalDateTime.now()));
+    public void getAllBooksSuccess() throws Exception {
+        List<Book> asList = Arrays.asList(new Book(1L,"Things Fall Apart"),
+                new Book(2L,"The Giver"));
 
         when(bookServiceMock.getAll()).thenReturn(asList);
 
@@ -49,8 +50,24 @@ public class booksController {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":1, \"name\":\"Kigali City\",\"weather\":23,\"fahrenheit\":23.90} ,{\"id\":2, \"name\":\"Kigali City\",\"weather\":23,\"fahrenheit\":23.90} ]"))
+                .andExpect(content().json("[{\"id\":1, \"title\":\"Things Fall apart\"} ,{\"id\":2, \"title\":\"The Giver\"} ]"))
                 .andReturn();
 
+    }
+
+    @Test
+    public void getOneBook_Success() throws Exception {
+        Book book = new Book(2L,"High School Girlz");
+        when(bookServiceMock.getById(2)).thenReturn(java.util.Optional.of(book));
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
+                .get("/api/cities/id/2")
+                .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc
+                .perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"id\":2, \"name\":\"Kigali City\",\"weather\":23,\"fahrenheit\":23.90}"))
+                .andReturn();
     }
 }

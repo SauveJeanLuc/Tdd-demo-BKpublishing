@@ -46,7 +46,9 @@ public class BooksController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new APICustomResponse(false, "Book title " + dto.getTitle() + " is registered already"));
         }
-        Book city = bookService.save(dto);
+        Book book = bookService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(city);
     }
+
+
 }
