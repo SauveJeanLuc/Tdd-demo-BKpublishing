@@ -8,17 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.bookService;
+import services.BookService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
-public class booksController {
+public class BooksController {
 
     @Autowired
-    private services.bookService bookService;
+    private BookService bookService;
 
     @GetMapping("/id/{id}")
     public ResponseEntity<?> getById(@PathVariable(name = "id") long id) {
@@ -30,7 +30,7 @@ public class booksController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new APICustomResponse(false, "City not found with id " + id));
+                .body(new APICustomResponse(false, "Book not found with id " + id));
     }
 
     @GetMapping("/all")
@@ -44,7 +44,7 @@ public class booksController {
 
         if (bookService.existsByTitle(dto.getTitle())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APICustomResponse(false, "City name " + dto.getTitle() + " is registered already"));
+                    .body(new APICustomResponse(false, "Book title " + dto.getTitle() + " is registered already"));
         }
         Book city = bookService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(city);

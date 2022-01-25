@@ -19,6 +19,12 @@ public class Book {
         this.author = author;
     }
 
+    public Book(Long id, String title, LocalDateTime publishedAt) {
+        this.id = id;
+        this.title = title;
+        this.publishedAt = publishedAt;
+    }
+
     public Long getId() {
         return id;
     }
