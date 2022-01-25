@@ -1,7 +1,5 @@
 package models;
 
-import java.time.LocalDateTime;
-
 public class Book {
 
     private Long id;
@@ -15,6 +13,11 @@ public class Book {
         this.id = id;
         this.title = title;
         this.author = author;
+    }
+
+    public Book(Long id, String title) {
+        this.id = id;
+        this.title = title;
     }
 
     public Long getId() {

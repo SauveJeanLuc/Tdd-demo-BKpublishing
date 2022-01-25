@@ -9,14 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import services.BookService;
-
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
-public class booksController {
+public class BooksController {
 
     @Autowired
     private BookService bookService;
@@ -44,9 +42,11 @@ public class booksController {
 
         if (bookService.existsByTitle(dto.getTitle())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APICustomResponse(false, "book title  " + dto.getTitle() + " is registered already"));
+                    .body(new APICustomResponse(false, "Book title " + dto.getTitle() + " is registered already"));
         }
         Book book = bookService.save(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(book);
     }
+
+
 }
