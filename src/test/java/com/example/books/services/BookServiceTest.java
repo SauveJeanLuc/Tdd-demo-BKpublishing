@@ -1,6 +1,7 @@
 package com.example.books.services;
 
 import com.example.books.dto.BookDto;
+import com.example.books.models.Author;
 import com.example.books.models.Book;
 import com.example.books.repository.IBookRepository;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -28,16 +30,20 @@ public class BookServiceTest {
 
     @Test
     public void returnBooks() {
+
+        Author firstAuthor = new Author(30l, "Julia Show", LocalDate.of(1990,01,13));
+        Author secondAuthor = new Author(31l, "Chinua Achebe", LocalDate.of(1982,02,15));
         when(bookRepository.findAll()).thenReturn(Arrays.asList(
-                new Book(1l, "Breaking the silence", 89l),
-                new Book(2l, "The giver", 23l),
-                new Book(3l, "My name is life", 2l)));
+                new Book(1l, "Breaking the silence", firstAuthor),
+                new Book(2l, "The giver", firstAuthor),
+                new Book(3l, "My name is life", secondAuthor)));
         assertEquals(2, bookService.getAll().get(1).getId());
     }
 
     @Test
     public void createBook() {
-        when(bookRepository.save(ArgumentMatchers.any(Book.class))).thenReturn(new Book(3l, "Holy Bible", 23l));
+        Author firstAuthor = new Author(30l, "John", LocalDate.of(1990,01,13));
+        when(bookRepository.save(ArgumentMatchers.any(Book.class))).thenReturn(new Book(3l, "Breaking The Silence", firstAuthor));
         assertEquals("Breaking The Silence",bookService.save( new BookDto()).getTitle());
     }
 
@@ -54,7 +60,8 @@ public class BookServiceTest {
 
     @Test
     public void getBook_ByID(){
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", 2l)));
+        Author firstAuthor = new Author(30l, "Julia Show", LocalDate.of(1990,01,13));
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", firstAuthor)));
 
         assertEquals("Go Girl", bookService.getById(120).get().getTitle());
     }
