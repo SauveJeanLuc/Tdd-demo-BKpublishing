@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Book {
     @Id
     private Long id;
