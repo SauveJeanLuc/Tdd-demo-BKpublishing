@@ -30,7 +30,7 @@ public class BooksController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new APICustomResponse(false, "Book not found with id " + id));
+                .body(new APICustomResponse(false, "Book not found"));
     }
 
     @GetMapping("/all")
