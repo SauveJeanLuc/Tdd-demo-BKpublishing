@@ -70,22 +70,6 @@ public class BooksControllerTest {
 
 
     @Test
-    public void getOneBook_404() throws Exception {
-        Book book =new Book(2L,"High School Girlz");
-        when(bookServiceMock.getById(book.getId())).thenReturn(java.util.Optional.of(book));
-
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders
-                .get("/api/books/id/202")
-                .accept(MediaType.APPLICATION_JSON);
-
-        MvcResult result = mockMvc
-                .perform(request)
-                .andExpect(status().isNotFound())
-                .andExpect(content().json("{\"status\":false,\"message\":\"Book not found\"}"))
-                .andReturn();
-    }
-
-    @Test
     public void createBookTest() throws Exception{
         Book book = new Book(2L,"High School Girlz");
         when(bookServiceMock.save(new BookDto())).thenReturn(book);
