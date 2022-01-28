@@ -17,7 +17,7 @@ public class BookService {
 
     public Optional<Book> getById(long id) {
 
-        Optional<Book> book =  bookRepository.findById(id);
+        Optional<Book> book = bookRepository.findById(id);
 
         return book;
     }
@@ -34,7 +34,7 @@ public class BookService {
 
 
     public Book save(BookDto dto) {
-        Book book =  new Book();
+        Book book = new Book();
         book.setTitle(dto.getTitle());
         return bookRepository.save(book);
     }

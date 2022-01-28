@@ -4,14 +4,12 @@ package com.example.books.controllers;
 import com.example.books.dto.AuthorDto;
 import com.example.books.models.Author;
 import com.example.books.services.AuthorService;
-import com.example.books.utils.CustomException;
 import com.example.books.utils.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,7 +20,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -105,17 +102,5 @@ public class AuthorControllerTests {
                 .perform(request)
                 .andExpect(status().isCreated())
                 .andReturn();
-    }
-
-    @Test
-    public void create_test_duplicateAuthor() throws Exception {
-        when(authorServiceMock.save(any(AuthorDto.class))).thenThrow(new CustomException("FullNames already used", HttpStatus.BAD_REQUEST));
-
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/authors")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .content("{\"id\":2, \"fullNames\":\"Lorenzo Loraine\"}");
-
-        mockMvc.perform(request).andExpect(status().isBadRequest()).andExpect(content().string("FullNames already used")).andReturn();
     }
 }

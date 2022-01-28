@@ -1,27 +1,21 @@
 package com.example.books.controllers;
 
 import com.example.books.dto.BookDto;
-import com.example.books.utils.CustomException;
-import com.example.books.utils.JsonUtil;
 import com.example.books.models.Book;
+import com.example.books.services.BookService;
+import com.example.books.utils.JsonUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import com.example.books.services.BookService;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,7 +51,7 @@ public class BooksControllerTest {
 
     @Test
     public void getOneBook_Success() throws Exception {
-        Book book = new Book(2L,"High School Girlz");
+        Book book = new Book(2L, "High School Girlz");
         when(bookServiceMock.getById(2)).thenReturn(java.util.Optional.of(book));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders
@@ -84,7 +78,7 @@ public class BooksControllerTest {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isNotFound())
-                .andExpect(content().json("{\"status\":false,\"message\":\"Book not found\"}"))
+                .andExpect(content().json("{\"status\":false,\"message\":\"Book not found with id 202\"}"))
                 .andReturn();
     }
 
@@ -105,15 +99,4 @@ public class BooksControllerTest {
                 .andReturn();
     }
 
-    @Test
-    public void create_test_duplicateCity() throws Exception {
-        when(bookServiceMock.save(any(BookDto.class))).thenThrow(new CustomException("Book Title already registered", HttpStatus.BAD_REQUEST));
-
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/books")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .content("{\"id\":2, \"title\":\"High School Girlz\"}");
-
-        mockMvc.perform(request).andExpect(status().isBadRequest()).andExpect(content().string("Book Title already registered")).andReturn();
-    }
 }

@@ -1,10 +1,8 @@
 package com.example.books.services;
 
 import com.example.books.dto.AuthorDto;
-import com.example.books.dto.BookDto;
 import com.example.books.models.Author;
 import com.example.books.repository.IAuthorRepository;
-import com.example.books.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +17,7 @@ public class AuthorService {
 
     public Optional<Author> getById(long id) {
 
-        Optional<Author> book =  authorRepository.findById(id);
+        Optional<Author> book = authorRepository.findById(id);
 
         return book;
     }

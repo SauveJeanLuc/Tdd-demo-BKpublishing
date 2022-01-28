@@ -16,7 +16,8 @@ import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 
@@ -47,21 +48,10 @@ public class BookServiceTest {
         assertEquals("Breaking The Silence",bookService.save( new BookDto()).getTitle());
     }
 
-//    @Test
-//    public void createBookDuplicate(){
-//
-//        when(bookRepository.existsByTitle(anyString())).thenReturn(true);
-//
-//        Exception exception = assertThrows(CustomException.class, () -> bookService.save(new BookDto()));
-//
-//        assertEquals("Book name already registered", exception.getMessage());
-//    }
-
 
     @Test
-    public void getBook_ByID(){
-        Author firstAuthor = new Author(30l, "Julia Show", LocalDate.of(1990,01,13));
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", firstAuthor)));
+    public void getBook_ByID() {
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", 2l)));
 
         assertEquals("Go Girl", bookService.getById(120).get().getTitle());
     }
@@ -83,14 +73,6 @@ public class BookServiceTest {
         when(bookRepository.existsByTitle(anyString())).thenReturn(false);
         assertEquals(false, bookService.existsByTitle("Miracle Worker"));
     }
-
-
-
-
-
-
-
-
 
 
 }
