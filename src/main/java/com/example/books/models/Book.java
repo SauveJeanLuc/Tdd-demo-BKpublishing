@@ -1,12 +1,14 @@
 package com.example.books.models;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -29,4 +31,20 @@ public class Book {
         this.title = title;
     }
 
+    public Book() {
+    }
+
+    public Book(Long id, String title, Author author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

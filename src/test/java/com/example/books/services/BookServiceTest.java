@@ -51,7 +51,7 @@ public class BookServiceTest {
 
     @Test
     public void getBook_ByID() {
-        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", new Author())));
+        when(bookRepository.findById(anyLong())).thenReturn(Optional.of(new Book(120l, "Go Girl", new Author(1l, "Luc"))));
 
         assertEquals("Go Girl", bookService.getById(120).get().getTitle());
     }
