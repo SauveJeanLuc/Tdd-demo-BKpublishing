@@ -66,7 +66,7 @@ public class AuthorControllerTests {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":2,\"title\":\"Lorenzo Loraine\"}"))
+                .andExpect(content().json("{\"id\":2,\"fullNames\":\"Lorenzo Loraine\"}"))
                 .andReturn();
     }
 

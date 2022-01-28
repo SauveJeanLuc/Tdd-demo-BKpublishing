@@ -1,9 +1,7 @@
 package com.example.books.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +14,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="authors")
+@Getter
+@Setter
+@Table(name = "authors")
 public class Author {
 
     @Id
@@ -26,8 +26,8 @@ public class Author {
     @Column(name = "full_names")
     private String fullNames;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @Column(name="date_of_birth")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "date_of_birth")
     private LocalDate dob;
 
     public Author(Long id, String fullNames) {
@@ -35,5 +35,27 @@ public class Author {
         this.fullNames = fullNames;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFullNames() {
+        return fullNames;
+    }
+
+    public void setFullNames(String fullNames) {
+        this.fullNames = fullNames;
+    }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
+    }
 }
