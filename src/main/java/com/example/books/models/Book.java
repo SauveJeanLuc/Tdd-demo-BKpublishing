@@ -1,15 +1,17 @@
-package models;
+package com.example.books.models;
+
+import org.springframework.data.annotation.Id;
 
 public class Book {
-
+@Id
     private Long id;
     private String title;
-    private Author author;
+    private Long author;
 
     public Book() {
     }
 
-    public Book(Long id, String title, Author author) {
+    public Book(Long id, String title,  Long author) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -37,11 +39,11 @@ public class Book {
     }
 
 
-    public Author getAuthor() {
+    public Long getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(Long author) {
         this.author = author;
     }
 }

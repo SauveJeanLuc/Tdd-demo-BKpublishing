@@ -3,8 +3,7 @@ package com.example.books.controllers;
 import com.example.books.dto.BookDto;
 import com.example.books.utils.CustomException;
 import com.example.books.utils.JsonUtil;
-import controllers.BooksController;
-import models.Book;
+import com.example.books.models.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import services.BookService;
+import com.example.books.services.BookService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(BooksController.class)
-public class BookControllerTests {
+public class BooksControllerTest {
     @MockBean
     private BookService bookServiceMock;
 
@@ -107,7 +106,7 @@ public class BookControllerTests {
     }
 
     @Test
-    public void create_test_duplicateBook() throws Exception {
+    public void create_test_duplicateCity() throws Exception {
         when(bookServiceMock.save(any(BookDto.class))).thenThrow(new CustomException("Book Title already registered", HttpStatus.BAD_REQUEST));
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/books")

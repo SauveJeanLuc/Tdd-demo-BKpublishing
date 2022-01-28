@@ -2,13 +2,10 @@ package com.example.books.controllers;
 
 
 import com.example.books.dto.AuthorDto;
-import com.example.books.dto.BookDto;
+import com.example.books.models.Author;
+import com.example.books.services.AuthorService;
 import com.example.books.utils.CustomException;
 import com.example.books.utils.JsonUtil;
-import controllers.AuthorController;
-import controllers.BooksController;
-import models.Author;
-import models.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import services.AuthorService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,6 +26,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(AuthorController.class)

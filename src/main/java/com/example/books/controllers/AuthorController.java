@@ -1,13 +1,13 @@
-package controllers;
+package com.example.books.controllers;
 
 import com.example.books.dto.AuthorDto;
+import com.example.books.models.Author;
 import com.example.books.utils.APICustomResponse;
-import models.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import services.AuthorService;
+import com.example.books.services.AuthorService;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class AuthorController {
     @PostMapping("/add")
     public ResponseEntity<?> saveItem(@RequestBody AuthorDto dto) {
 
-        if (authorService.existsByTitle(dto.getFullNames())) {
+        if (authorService.existsByFullNames(dto.getFullNames())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new APICustomResponse(false, "Author with names " + dto.getFullNames() + " is registered already"));
         }
