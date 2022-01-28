@@ -1,7 +1,5 @@
 package com.example.books.dto;
 
-import com.example.books.models.Author;
-
 import java.time.LocalDateTime;
 
 public class BookDto {

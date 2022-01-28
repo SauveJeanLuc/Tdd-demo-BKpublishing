@@ -3,7 +3,7 @@ package com.example.books.models;
 import org.springframework.data.annotation.Id;
 
 public class Book {
-@Id
+    @Id
     private Long id;
     private String title;
     private Long author;
@@ -11,7 +11,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String title,  Long author) {
+    public Book(Long id, String title, Long author) {
         this.id = id;
         this.title = title;
         this.author = author;

@@ -1,7 +1,5 @@
 package com.example.books.models;
 
-import java.time.LocalDateTime;
-
 public class Author {
     private Long id;
     private String fullNames;
@@ -14,10 +12,6 @@ public class Author {
         this.fullNames = fullNames;
     }
 
-    public Author(Long id, String fullNames) {
-        this.id = id;
-        this.fullNames = fullNames;
-    }
 
     public Long getId() {
         return id;
