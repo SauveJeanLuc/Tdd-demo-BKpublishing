@@ -81,7 +81,7 @@ public class BooksControllerTest {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isNotFound())
-                .andExpect(content().json("{\"status\":false,\"message\":\"Book not found with id 202\"}"))
+                .andExpect(content().json("{\"status\":false,\"message\":\"Book not found\"}"))
                 .andReturn();
     }
 
