@@ -50,7 +50,7 @@ public class BooksControllerTest {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":1, \"title\":\"Things Fall apart\"} ,{\"id\":2, \"title\":\"The Giver\"} ]"))
+                .andExpect(content().json("[{\"id\":1, \"title\":\"Things Fall Apart\"} ,{\"id\":2, \"title\":\"The Giver\"} ]"))
                 .andReturn();
 
     }
