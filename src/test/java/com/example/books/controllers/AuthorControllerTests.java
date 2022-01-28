@@ -69,7 +69,7 @@ public class AuthorControllerTests {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":2, \"title\":\"Lorenzo Loraine\"}"))
+                .andExpect(content().json("{\"id\":2,\"title\":\"Lorenzo Loraine\"}"))
                 .andReturn();
     }
 
@@ -86,7 +86,7 @@ public class AuthorControllerTests {
         MvcResult result = mockMvc
                 .perform(request)
                 .andExpect(status().isNotFound())
-                .andExpect(content().json("{\"status\":false,\"message\":\"Author not found\"}"))
+                .andExpect(content().json("{\"status\":false,\"message\":\"Author not found with id 202\"}"))
                 .andReturn();
     }
 
